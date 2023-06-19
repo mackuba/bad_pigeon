@@ -10,5 +10,9 @@ module BadPigeon
     def requests
       @json['log']['entries'].map { |j| HARRequest.new(j) }
     end
+
+    def inspect
+      to_s
+    end
   end
 end

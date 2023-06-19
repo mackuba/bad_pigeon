@@ -51,5 +51,11 @@ module BadPigeon
     def response_json
       response_body && JSON.parse(response_body)
     end
+
+    def inspect
+      keys = [:method, :url, :status]
+      vars = keys.map { |k| "#{k}=#{self.send(k).inspect}" }.join(", ")
+      "#<#{self.class}:0x#{object_id} #{vars}>"
+    end
   end
 end
