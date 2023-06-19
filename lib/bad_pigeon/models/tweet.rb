@@ -71,13 +71,29 @@ module BadPigeon
     end
 
     def attrs
-      StrictHash[
-        created_at: legacy['created_at'],
+      user = json['core']['user_results']['result']
+
+      fields = legacy.merge({
         id: id,
-        id_str: legacy['id_str'],
-        full_text: text,
-        entities: legacy['entities'],
-      ]
+        source: json['source'],
+        text: text,
+        truncated: false,
+      }).reject { |k, v| ['retweeted_status_result', 'quoted_status_result'].include?(k) }
+
+      user_fields = user['legacy'].merge({
+        id: user['rest_id'].to_i,
+        id_str: user['rest_id'],
+      }).reject { |k, v| k =~ /^profile_\w+_extensions/ }
+
+      fields[:user] = StrictHash[user_fields]
+
+      if quoted_status?
+        fields[:quoted_status] = quoted_status.attrs
+      elsif retweeted_status?
+        fields[:retweeted_status] = retweeted_status.attrs
+      end
+
+      StrictHash[fields]
     end
   end
 end
