@@ -1,11 +1,14 @@
 require_relative 'har/har_archive'
 require_relative 'entry_filter'
+require_relative 'util/assertions'
 require_relative 'timelines'
 
 require 'uri'
 
 module BadPigeon
   class TweetExtractor
+    include Assertions
+
     def initialize
       @filter = EntryFilter.new
     end
@@ -23,7 +26,7 @@ module BadPigeon
         if timeline_class = TIMELINE_TYPES[endpoint]
           timeline_class.new(e.response_json).instructions.map(&:entries)
         elsif !TIMELINE_TYPES.has_key?(endpoint)
-          puts "Unknown endpoint: #{endpoint}"
+          debug "Unknown endpoint: #{endpoint}"
           []
         end
       }.flatten

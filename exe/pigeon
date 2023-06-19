@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'bad_pigeon'
+require 'json'
+
+extractor = BadPigeon::TweetExtractor.new
+archive_data = STDIN.read
+tweets = extractor.get_tweets_from_har(archive_data)
+puts JSON.generate(tweets.map(&:attrs))

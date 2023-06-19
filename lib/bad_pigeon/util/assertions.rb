@@ -9,8 +9,13 @@ module BadPigeon
         target.define_method(:assert) do |msg = nil, &block|
           raise AngryPigeon::AssertionError.new(msg) if msg || block.call == false
         end
+        target.define_method(:debug) do |msg|
+          $stderr.puts msg
+        end
       else
         target.define_method(:assert) do |msg = nil, &block|
+        end
+        target.define_method(:debug) do |msg|
         end
       end
     end
