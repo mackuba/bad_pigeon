@@ -72,7 +72,11 @@ module BadPigeon
 
     def attrs
       StrictHash[
-        full_text: text
+        created_at: legacy['created_at'],
+        id: id,
+        id_str: legacy['id_str'],
+        full_text: text,
+        entities: legacy['entities'],
       ]
     end
   end
