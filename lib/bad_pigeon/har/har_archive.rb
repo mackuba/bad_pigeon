@@ -7,7 +7,7 @@ module BadPigeon
       @json = JSON.parse(data)
     end
 
-    def entries
+    def requests
       @json['log']['entries'].map { |j| HARRequest.new(j) }
     end
   end

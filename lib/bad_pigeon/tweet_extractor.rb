@@ -15,23 +15,21 @@ module BadPigeon
 
     def get_tweets_from_har(har_data)
       archive = HARArchive.new(har_data)
+      requests = archive.requests.select(&:includes_tweet_data?)
 
-      requests = archive.entries.select { |e|
-        e.graphql_endpoint? && e.method == :get && e.status == 200 && e.has_json_response?
-      }
+      timeline_entries = requests.map { |e| timeline_entries_from_request(e) }.flatten
+      timeline_entries.select { |e| @filter.include_entry?(e) }.map(&:all_tweets).flatten
+    end
 
-      entries = requests.map { |e|
-        endpoint = URI(e.url).path.split('/').last
+    def timeline_entries_from_request(request)
+      endpoint = request.endpoint_name
 
-        if timeline_class = TIMELINE_TYPES[endpoint]
-          timeline_class.new(e.response_json).instructions.map(&:entries)
-        elsif !TIMELINE_TYPES.has_key?(endpoint)
-          debug "Unknown endpoint: #{endpoint}"
-          []
-        end
-      }.flatten
-
-      entries.select { |e| @filter.include_entry?(e) }.map(&:items).flatten.map(&:tweet).compact
+      if timeline_class = TIMELINE_TYPES[endpoint]
+        timeline_class.new(request.response_json).instructions.map(&:entries)
+      else
+        debug "Unknown endpoint: #{endpoint}" unless TIMELINE_TYPES.has_key?(endpoint)
+        []
+      end
     end
   end
 end

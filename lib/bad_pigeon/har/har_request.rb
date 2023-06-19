@@ -1,3 +1,4 @@
+require 'addressable/uri'
 require 'json'
 
 module BadPigeon
@@ -16,6 +17,14 @@ module BadPigeon
 
     def graphql_endpoint?
       url.start_with?('https://api.twitter.com/graphql/') || url.start_with?('https://twitter.com/i/api/graphql/')
+    end
+
+    def includes_tweet_data?
+      graphql_endpoint? && method == :get && status == 200 && has_json_response?
+    end
+
+    def endpoint_name
+      Addressable::URI.parse(url).path.split('/').last
     end
 
     def status

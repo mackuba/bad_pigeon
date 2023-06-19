@@ -27,12 +27,16 @@ module BadPigeon
       @json['clientEventInfo'] && @json['clientEventInfo']['component']
     end
 
+    def all_tweets
+      items.map(&:tweet).compact
+    end
+
     def items
       case self.type
       when Type::ITEM
-        item_from_content(@json['itemContent'])
+        [item_from_content(@json['itemContent'])].compact
       when Type::MODULE
-        @json['items'].map { |i| item_from_content(i['item']['itemContent']) }
+        @json['items'].map { |i| item_from_content(i['item']['itemContent']) }.compact
       when Type::CURSOR
         []
       else
@@ -44,12 +48,12 @@ module BadPigeon
     def item_from_content(item_content)
       case item_content['itemType']
       when 'TimelineTweet'
-        [TimelineTweet.new(item_content)]
+        TimelineTweet.new(item_content)
       when 'TimelineUser'
-        []
+        nil
       else
         assert("Unknown itemContent type: #{item_content['itemType']}")
-        []
+        nil
       end
     end
   end

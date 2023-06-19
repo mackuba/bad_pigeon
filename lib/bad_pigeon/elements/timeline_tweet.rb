@@ -28,7 +28,7 @@ module BadPigeon
     end
 
     def tweet
-      Tweet.new(tweet_data)
+      tweet_data && Tweet.new(tweet_data)
     end
   end
 end
