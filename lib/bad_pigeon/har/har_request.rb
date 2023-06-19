@@ -27,6 +27,11 @@ module BadPigeon
       Addressable::URI.parse(url).path.split('/').last
     end
 
+    def params
+      vars = Addressable::URI.parse(url).query_values['variables']
+      vars && JSON.parse(vars) || {}
+    end
+
     def status
       @json['response']['status']
     end
