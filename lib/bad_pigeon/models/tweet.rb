@@ -73,17 +73,27 @@ module BadPigeon
     def attrs
       user = json['core']['user_results']['result']
 
-      fields = legacy.merge({
+      fields = {
         id: id,
         source: json['source'],
         text: text,
         truncated: false,
-      }).reject { |k, v| ['retweeted_status_result', 'quoted_status_result'].include?(k) }
+      }
 
-      user_fields = user['legacy'].merge({
+      legacy.each do |k, v|
+        next if ['retweeted_status_result', 'quoted_status_result'].include?(k)
+        fields[k.to_sym] = v
+      end
+
+      user_fields = {
         id: user['rest_id'].to_i,
         id_str: user['rest_id'],
-      }).reject { |k, v| k =~ /^profile_\w+_extensions/ }
+      }
+
+      user['legacy'].each do |k, v|
+        next if k =~ /^profile_\w+_extensions/
+        user_fields[k.to_sym] = v
+      end
 
       fields[:user] = StrictHash[user_fields]
 
