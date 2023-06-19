@@ -12,10 +12,10 @@ Gem::Specification.new do |spec|
   spec.homepage = "https://github.com/mackuba/bad_pigeon"
 
   spec.description = %(
-    BadPigeon is a Ruby gem that allows you to extract tweet data from the XHR requests that the Twitter.com frontend
+    BadPigeon is a Ruby gem that allows you to extract tweet data from the XHR requests that the Twitter frontend
     website does in user's browser. The requests need to be saved into a "HAR" archive file from the browser's web
     inspector tool and then that file is fed into either the appropriate Ruby class or the `pigeon` command line tool.
-    
+
     The tool intents to be API compatible with the popular `twitter` gem and generate the same kind of tweet JSON
     structure as is read and exported by that library.
   )
