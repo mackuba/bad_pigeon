@@ -41,7 +41,7 @@ module BadPigeon
     end
 
     def has_json_response?
-      mime_type == 'application/json'
+      mime_type.gsub(/;.*/, '').strip == 'application/json'
     end
 
     def response_body
