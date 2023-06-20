@@ -1,4 +1,8 @@
-## [Unreleased]
+## [0.1.1] - 2023-06-20
+
+- timeline parsing improvements
+- added some helper methods
+- fix for HAR exports from Firefox/Chrome
 
 ## [0.1.0] - 2023-06-19
 
