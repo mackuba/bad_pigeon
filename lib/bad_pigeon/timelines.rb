@@ -7,6 +7,9 @@ module BadPigeon
     'HomeLatestTimeline' => HomeTimeline,
     'HomeTimeline' => HomeTimeline,
     'ListLatestTweetsTimeline' => ListTimeline,
+
+    # ignored requests:
+    'AudioSpaceById' => nil,
     'CommunitiesTabBarItemQuery' => nil,
     'DataSaverMode' => nil,
     'GetUserClaims' => nil,
@@ -16,7 +19,9 @@ module BadPigeon
     'ListSubscribers' => nil,
     'ListsManagementPageTimeline' => nil,
     'ProfileSpotlightsQuery' => nil,
+    'UserByRestId' => nil,
     'UserByScreenName' => nil,
+    'Viewer' => nil,
     'getAltTextPromptPreference' => nil,
   }
 end
