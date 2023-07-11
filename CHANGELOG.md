@@ -1,3 +1,7 @@
+## [0.1.2] - 2023-07-11
+
+- fixed issue with some requests being ignored because they use POST method
+
 ## [0.1.1] - 2023-06-20
 
 - timeline parsing improvements
