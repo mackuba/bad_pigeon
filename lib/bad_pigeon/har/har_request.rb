@@ -20,7 +20,7 @@ module BadPigeon
     end
 
     def includes_tweet_data?
-      graphql_endpoint? && method == :get && status == 200 && has_json_response?
+      graphql_endpoint? && status == 200 && has_json_response?
     end
 
     def endpoint_name
