@@ -25,7 +25,7 @@ module BadPigeon
       endpoint = request.endpoint_name
 
       if timeline_class = TIMELINE_TYPES[endpoint]
-        timeline_class.new(request.response_json).instructions.map(&:entries)
+        timeline_class.new(request.response_json).instructions.map(&:entries).flatten
       else
         debug "Unknown endpoint: #{endpoint}" unless TIMELINE_TYPES.has_key?(endpoint)
         []
