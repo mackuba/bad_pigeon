@@ -2,6 +2,10 @@ module BadPigeon
   module Component
     # normal tweet in e.g. home/latest or a user's timeline
     ORGANIC_FEED_TWEET = "suggest_ranked_organic_tweet"
+    NORMAL_TWEET = "tweet"
+
+    # tweet in the latest timeline
+    FOLLOWING = "following_in_network"
 
     # tweet in a list timeline
     ORGANIC_LIST_TWEET = "suggest_organic_list_tweet"
@@ -19,6 +23,7 @@ module BadPigeon
 
     # promoted tweet (ad)
     PROMOTED_TWEET = "suggest_promoted"
+    FOLLOWING_PROMOTED = "following_promoted"
 
     # "Who to follow" block
     FOLLOW_SUGGESTIONS = "suggest_who_to_follow"

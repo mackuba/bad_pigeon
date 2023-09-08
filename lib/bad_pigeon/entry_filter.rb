@@ -9,6 +9,8 @@ module BadPigeon
       case entry.component
       when Component::ORGANIC_FEED_TWEET,
            Component::ORGANIC_LIST_TWEET,
+           Component::NORMAL_TWEET,
+           Component::FOLLOWING,
            Component::PINNED_TWEET,
            Component::EXTENDED_REPLY,
            Component::SOCIAL_CONTEXT,
@@ -17,6 +19,7 @@ module BadPigeon
            then true
 
       when Component::PROMOTED_TWEET,
+           Component::FOLLOWING_PROMOTED,
            Component::FOLLOW_SUGGESTIONS
            then false
 
