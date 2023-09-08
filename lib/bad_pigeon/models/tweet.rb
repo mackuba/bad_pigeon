@@ -8,8 +8,21 @@ require 'time'
 module BadPigeon
   class Tweet
     include Assertions
+    extend Assertions
 
     attr_reader :json
+
+    def self.from_result(json)
+      case json['__typename']
+      when 'Tweet', 'TweetWithVisibilityResults'
+        Tweet.new(json)
+      when nil, 'TweetUnavailable', 'TweetTombstone'
+        nil
+      else
+        assert("Unknown tweet result type: #{json['__typename']}")
+        nil
+      end
+    end
 
     def initialize(json)
       case json['__typename']
@@ -50,17 +63,17 @@ module BadPigeon
     alias retweeted_status? retweet?
 
     def retweeted_status
-      legacy['retweeted_status_result'] && Tweet.new(legacy['retweeted_status_result']['result'])
+      legacy['retweeted_status_result'] && Tweet.from_result(legacy['retweeted_status_result']['result'])
     end
 
     def quoted_status?
       # there is also legacy['is_quote_status'], but it may be true while quoted_status_result
       # is not set if the quoted status was deleted
-      !!json['quoted_status_result']
+      !!quoted_status
     end
 
     def quoted_status
-      json['quoted_status_result'] && Tweet.new(json['quoted_status_result']['result'])
+      json['quoted_status_result'] && Tweet.from_result(json['quoted_status_result']['result'])
     end
 
     alias quoted_tweet? quoted_status?

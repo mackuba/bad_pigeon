@@ -19,5 +19,9 @@ module BadPigeon
         end
       end
     end
+
+    def self.extended(target)
+      included(target.singleton_class)
+    end
   end
 end

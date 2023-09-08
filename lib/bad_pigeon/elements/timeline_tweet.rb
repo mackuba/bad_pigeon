@@ -9,26 +9,8 @@ module BadPigeon
       @json = json
     end
 
-    def result_type
-      @json['tweet_results']['result'] && @json['tweet_results']['result']['__typename']
-    end
-
-    def tweet_data
-      case result_type
-      when 'Tweet', 'TweetWithVisibilityResults'
-        @json['tweet_results']['result']
-      when 'TweetUnavailable'
-        nil
-      when nil
-        nil
-      else
-        assert("Unknown tweet result type: #{result_type}")
-        nil
-      end
-    end
-
     def tweet
-      tweet_data && Tweet.new(tweet_data)
+      @json['tweet_results']['result'] && Tweet.from_result(@json['tweet_results']['result'])
     end
   end
 end
