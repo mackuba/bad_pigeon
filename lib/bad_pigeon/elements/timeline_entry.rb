@@ -2,6 +2,13 @@ require 'bad_pigeon/elements/timeline_tweet'
 require 'bad_pigeon/util/assertions'
 
 module BadPigeon
+
+  # Represents an "entry" which is a part of a timeline response. An entry in most cases is a wrapper for either one
+  # tweet or a group of connected tweets (e.g. a parent and a reply).
+  #
+  # Tweets can be extracted from an entry using ({#items}) method, which returns an array of tweets as instances of
+  # {BadPigeon::TimelineTweet} class.
+
   class TimelineEntry
     include Assertions
 

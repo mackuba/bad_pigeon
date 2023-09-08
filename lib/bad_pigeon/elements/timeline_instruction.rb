@@ -2,6 +2,12 @@ require 'bad_pigeon/elements/timeline_entry'
 require 'bad_pigeon/util/assertions'
 
 module BadPigeon
+
+  # Represents an "instruction" which is a part of a timeline response. An instruction can be e.g. pinning one entry
+  # to the top or adding some number of entries to the list view.
+  #
+  # A timeline includes one or more "entries" ({BadPigeon::TimelineEntry}), most of which contain one or more tweets.
+
   class TimelineInstruction
     include Assertions
 

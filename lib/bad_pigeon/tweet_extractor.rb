@@ -6,6 +6,10 @@ require_relative 'timelines'
 require 'uri'
 
 module BadPigeon
+
+  # The main entry point to the library. Pass the contents of a HAR archive file to {#get_tweets_from_har} and get
+  # a flat list of all extracted tweets in return.
+
   class TweetExtractor
     include Assertions
 

@@ -2,6 +2,15 @@ require 'addressable/uri'
 require 'json'
 
 module BadPigeon
+
+  # Represents info about one request and response to it, including the complete response data ({#response_body},
+  # or {#response_json} for a parsed JSON form).
+  #
+  # Requests that may potentially include tweet data return true from the {#includes_tweet_data?} method. The JSON
+  # data from each such request represents a "timeline" and may be parsed using a specific timeline class like
+  # {BadPigeon::HomeTimeline} or {BadPigeon::UserTimeline}; the {BadPigeon::TIMELINE_TYPES} hash provides a mapping
+  # of GraphQL endpoint names to timeline classes, and the endpoint name can be read using {#endpoint_name} method.
+
   class HARRequest
     def initialize(json)
       @json = json

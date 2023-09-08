@@ -6,6 +6,11 @@ require 'bad_pigeon/util/strict_hash'
 require 'time'
 
 module BadPigeon
+
+  #
+  # A model that represents one tweet with an interface matching that from the original `twitter` Ruby gem.
+  #
+
   class Tweet
     include Assertions
     extend Assertions

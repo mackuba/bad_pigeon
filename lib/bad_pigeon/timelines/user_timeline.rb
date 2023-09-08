@@ -2,6 +2,12 @@ require 'bad_pigeon/elements/timeline_instruction'
 require 'bad_pigeon/util/assertions'
 
 module BadPigeon
+
+  # Represents a timeline response for a timeline of user's posts as seen on their profile page.
+  #
+  # A timeline includes one or more "instructions" ({BadPigeon::TimelineInstruction}), and usually in particular a
+  # "TimelineAddEntries" instruction which provides one or more entries containing tweets.
+
   class UserTimeline
     include Assertions
 
