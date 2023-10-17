@@ -12,6 +12,7 @@ module BadPigeon
            Component::NORMAL_TWEET,
            Component::FOLLOWING,
            Component::PINNED_TWEET,
+           Component::PINNED_TWEETS,
            Component::EXTENDED_REPLY,
            Component::SOCIAL_CONTEXT,
            Component::SOCIAL_ACTIVITY,

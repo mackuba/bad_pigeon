@@ -10,8 +10,9 @@ module BadPigeon
     # tweet in a list timeline
     ORGANIC_LIST_TWEET = "suggest_organic_list_tweet"
 
-    # user's pinned tweet
+    # user's pinned tweets
     PINNED_TWEET = "suggest_pinned_tweet"
+    PINNED_TWEETS = "pinned_tweets"
 
     # reply that shows up in your timeline
     EXTENDED_REPLY = "suggest_extended_reply"
