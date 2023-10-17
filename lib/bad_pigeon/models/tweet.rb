@@ -78,7 +78,8 @@ module BadPigeon
     end
 
     def quoted_status
-      json['quoted_status_result'] && Tweet.from_result(json['quoted_status_result']['result'])
+      qsr = json['quoted_status_result']
+      qsr && qsr['result'] && Tweet.from_result(qsr['result'])
     end
 
     alias quoted_tweet? quoted_status?
