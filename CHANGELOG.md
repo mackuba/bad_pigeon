@@ -1,3 +1,12 @@
+## [0.1.4] - 2023-09-17
+
+- compatibility fixes
+
+## [0.1.3] - 2023-09-08
+
+- fixed handling of quotes of deleted posts
+- compatibility fixes for latest changes in the tweet response structure
+
 ## [0.1.2] - 2023-07-11
 
 - fixed issue with some requests being ignored because they use POST method
