@@ -25,7 +25,9 @@ module BadPigeon
     end
 
     def graphql_endpoint?
-      url.start_with?('https://api.twitter.com/graphql/') || url.start_with?('https://twitter.com/i/api/graphql/')
+      url.start_with?('https://api.twitter.com/graphql/') ||
+        url.start_with?('https://twitter.com/i/api/graphql/') ||
+        url.start_with?('https://x.com/i/api/graphql/')
     end
 
     def includes_tweet_data?
