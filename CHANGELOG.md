@@ -1,3 +1,7 @@
+## [0.1.5] - 2024-06-16
+
+- compatibility fixes (new "x.com" hostname in URLs)
+
 ## [0.1.4] - 2023-09-17
 
 - compatibility fixes
